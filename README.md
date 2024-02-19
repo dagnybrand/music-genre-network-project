@@ -71,9 +71,15 @@ The original GTZAN Dataset is a public dataset originally from "Musical genre cl
 
 ![Blues Spectrogram](/data_samples/blues00009.png "Classification: Blues")
 
+*Classification: Blues*
+
 ![Hip Hop Spectrogram](/data_samples/hiphop00003.png "Classification: Hip Hop")
 
+*Classification: Hip Hop*
+
 ![Metal Spectrogram](/data_samples/metal00002.png "Classification: Metal")
+
+*Classification: Metal*
 
 
 I compiled the images, which were originally split into 10 seperate folders for each genre, into one csv file containing the image name and the correct genre classification to use as input in my neural network for both training and validation. Then, I used scikit test_train_split to split my csv entries randomly into 70% training data and 30% validation data. The small Python code I used to do this is located in the [] file in this GitHub.
