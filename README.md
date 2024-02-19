@@ -69,17 +69,17 @@ In Part 1, I discussed two possible routes for this project, one that focused on
 
 The original GTZAN Dataset is a public dataset originally from "Musical genre classification of audio signals" by G. Tzanetakis and P. Cook. This paper is linked [here](https://ieeexplore.ieee.org/document/1021072). The GTZAN dataset is the most used public dataset for machine learning for music genre classification. This dataset contains 1000 audio files, each 30 seconds in length. These files are divided into 10 different genres, each with 100 corresponding audio files. The dataset I downloaded includes these audio files as spectrograms, which were created using the librosa library. So, in total, my complete dataset includes 100 spectrograms for each of the 10 genres I will be able to classify: blues, classical, country, disco, hiphop, jazz (only has 99 files), metal, pop, reggae, and rock. This gives me a total of 999 spectrographs. Here are a few spectrograms from my dataset:
 
-![Blues Spectrogram](/data_samples/blues00009.png "Classification: Blues")
-
 *Classification: Blues*
 
-![Hip Hop Spectrogram](/data_samples/hiphop00003.png "Classification: Hip Hop")
+![Blues Spectrogram](/data_samples/blues00009.png "Classification: Blues")
 
 *Classification: Hip Hop*
 
-![Metal Spectrogram](/data_samples/metal00002.png "Classification: Metal")
+![Hip Hop Spectrogram](/data_samples/hiphop00003.png "Classification: Hip Hop")
 
 *Classification: Metal*
+
+![Metal Spectrogram](/data_samples/metal00002.png "Classification: Metal")
 
 
 I compiled the images, which were originally split into 10 seperate folders for each genre, into one csv file containing the image name and the correct genre classification to use as input in my neural network for both training and validation. Then, I used scikit test_train_split to split my csv entries randomly into 70% training data and 30% validation data. The small Python code I used to do this is located in the [] file in this GitHub.
