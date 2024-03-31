@@ -4,7 +4,7 @@ Author: Dagny Brand
 ## Part 0
 This repository holds the Semester Project for CSE 40868. For the project, I have chosen to do the Music Genre Classification pre-defined project topic.
 
-This project will (hopefully, if all goes well) utilize an Anaconda virtual environment to run PyTorch.
+This project will utilize an Anaconda virtual environment to run PyTorch.
 
 ## Part 1
 
@@ -88,3 +88,15 @@ For the "unknown" testing dataset, I ran 20 of my own song choices, 2 per genre 
 
 
 ## Part 3
+
+### Testing the First Solution on a Single Validation Sample
+To test my first solution model on a single validation sample, run [test_model.py]. This program requires the torch, torchvision, sklearn, cv2, and numpy packages. It also uses the CNN class from the [model_architecture.py] file. The model weights are located in [first_solution.pth] and a single validation sample is the spectrograph of a Country song seen in [validation_sample/country00044.png]. If you run test_model.py from a clone of this GitHub repository with the necessary packages, it should run without error. If you run the file from a different folder, you may need to redefine the links to the model weights and the validation sample within [test_model.py]. The program will output "The song genre is Country" as the single validation input is a Country song.
+
+### First Solution Report
+#### Neural Network Architecture
+My model uses a Convolutional Neural Network architecture, as defined in [model_architecture.py]. The first convolutional layer has a kernel size of (7, 7) and a stride of (6, 6). It uses a large kernel and stride to minimize the size of the input image and allow for a faster and more efficient training and prediction time. The first layer has 64 output channels, the second layer has 128 output channels, and the third layer has 64 output channels. These output channels help the neural network to examine many different features of the spectrographs. The neural network utilizes a 2x2 maxpool to reduce the number of parameters needed in the network and shrink its size and training time. The neural network also uses the ReLU activation function after each convolutional layer to introduce nonlinearity into the network, as ReLU is often used in CNNs. During training, which was done with Google Colab and seen in [Semester_Project.ipynb], the model uses the Adam optimizer with a learning rate of 0.001. I first tried the SGD optimizer, which had shown to improve accuracy during the Class Practicals. However, the accuracy of the network was only around 20% when SGD was used, no matter the learning rate. Using Adam for the optimizer significantly increased the accuracy, so I switch to using Adam. Lastly, the model uses the Cross Entropy Loss loss function, which is good for classification problems and which we have used in Class Practicals.
+
+#### Classification Accuracy
+The classification accuracy is tested at the bottom of [Semester_Project.ipynb]. The classification accuracy on the validata data set is 59.667%. The classification accuracy on the training data set is 85.122%.
+
+#### Commentary and Improvements for Final Solution
