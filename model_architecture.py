@@ -7,15 +7,19 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
         self.classes = numClasses
 
-        self.conv1 = nn.Conv2d(in_channels = numChannels, out_channels=64, kernel_size=(7, 7), stride = (6, 6))
-        self.conv2 = nn.Conv2d(in_channels = 64, out_channels=128, kernel_size=(3, 3), stride = (1, 1))
-        self.conv4 = nn.Conv2d(in_channels = 128, out_channels=64, kernel_size=(3, 3), stride = (1, 1))
+        #self.conv1 = nn.Conv2d(in_channels = numChannels, out_channels=64, kernel_size=(7, 7), stride = (6, 6))
+        #self.conv2 = nn.Conv2d(in_channels = 64, out_channels=128, kernel_size=(3, 3), stride = (1, 1))
+        #self.conv4 = nn.Conv2d(in_channels = 128, out_channels=64, kernel_size=(3, 3), stride = (1, 1))
+
+        self.conv1 = nn.Conv2d(in_channels = numChannels, out_channels=16, kernel_size=(7, 7), stride = (6, 6))
+        self.conv2 = nn.Conv2d(in_channels = 16, out_channels=32, kernel_size=(3, 3), stride = (1, 1))
+        self.conv3 = nn.Conv2d(in_channels = 32, out_channels=16, kernel_size=(3, 3), stride = (1, 1))
 
         self.relu = nn.ReLU()
 
         self.maxpool = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
 
-        self.fc1 = nn.Linear(in_features=10240, out_features=1024)
+        self.fc1 = nn.Linear(in_features=2560, out_features=1024)
         self.fc2 = nn.Linear(in_features=1024, out_features=10)
 
 
@@ -60,7 +64,7 @@ class CNN(nn.Module):
             x = self.relu(x)
             x = self.maxpool(x)
 
-            x = self.conv4(x)
+            x = self.conv3(x)
             x = self.relu(x)
             x = self.maxpool(x)
 

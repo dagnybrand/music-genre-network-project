@@ -27,6 +27,16 @@ def test_model(test_sample, model_source = 'first_solution.pth'):
 def __main__():
     le = preprocessing.LabelEncoder()
     le.fit(['Blues', 'Classical', 'Country', 'Disco', 'Hip Hop', 'Jazz', 'Metal', 'Pop', 'Reggae', 'Rock'])
+    
+    sample = get_validation_sample(le, img='test_samples/at_last_(blues).png')
+    pred = test_model(sample[0], model_source='final_solution.pth')
+    pred = pred.numpy()[0]
+    print(f"The song genre is {le.inverse_transform([pred])[0]}")
+
+    return # remove return to test all of test set
+
+    # code to test accuracy on test set
+
     test_set_labels = [('at_last_(blues).png', 'Blues'), ('back_in_black_(rock).png', 'Rock'), 
                        ('california_(rock).png', 'Rock'), ('copperhead_road_(country).png', 'Country'), 
                        ('cruise_(country).png', 'Country'), ('cry_me_a_river_(classical).png', 'Classical'), 
@@ -41,18 +51,13 @@ def __main__():
     samples = []
     for label in test_set_labels:
         samples.append(get_validation_sample(le, img=f'test_samples/{label[0]}', genre=label[1]))
-    #sample = get_validation_sample(le, img='test_samples/back_in_black.png')
-    #pred = test_model(sample[0])
-    #pred = pred.numpy()[0]
-    #print(f"The song genre is {le.inverse_transform([pred])[0]}")
-
     num_correct = 0
     for sample in samples:
-        pred = test_model(sample[0])
+        pred = test_model(sample[0], model_source='final_solution.pth')
         pred = pred.numpy()[0]
         if pred == sample[1]:
             num_correct += 1
-        print(f"{sample[1]} \ {pred} -- The song genre is {le.inverse_transform([pred])[0]}")
+        print(f"The song genre is {le.inverse_transform([pred])[0]}")
     print(f"The test set accuracy is {num_correct/len(samples) * 100}%")
 
 __main__()
