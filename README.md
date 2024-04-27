@@ -114,5 +114,12 @@ To test my first solution model on a single test sample, run [test_model.py](tes
 
 
 ### Final Solution Report
-#### Test Dataset
+#### Gathering Test Dataset
 To create my "unknown" test dataset, I gathered the .mp4 files for 20 songs from Apple's iTunes. I found two songs per genre, as classified by Apple Music. I then used a [Spectrogram Creator](https://convert.ing-now.com/audio-spectrogram-creator/) to create spectrograms of the songs, using an output size of 1024x1024, a color level of 1, an intensity level of 1, and a density level of 1 to best match the style of the training data spectrograms. I used Preview to reformat the images to a size of 432x288, which is the input size for my neural network. An example of these spectrograms is seen in Part 1 of this readme. These test spectrograms were not necessarily made with the same program as the training and validation spectrograms, which means the test set represents another source of spectrograms. 
+
+
+### Test Set Accuracy
+The final solution is a smaller network than the first solution. Everything remained the same as explained in Part 3 except for the channel input and output numbers for each convolutional layer and the optimizer function. The first layer now has 16 output channels, the second layer has 32 output channels, and the third layer has 16 output channels. The optimizer function is an Adagrad optimizer with a learning rate of 0.01. The final solution has an accuracy of 62.67% when tested on the validation set and an accuracy of 30.00% when tested on my "unknown" test set.
+
+### Commentary on Test Set
+The network was able to classify the Hip Hop, Blues, and Classical genres perfectly but thought that the rest of the genres fell into these three categories as well. 
