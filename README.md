@@ -65,6 +65,7 @@ Blues: guitar, piano, harmonica, bass, drums, blues harp, slide guitar, xylophon
 
 For this project, I have found three subsets of data, training, validation, and testing, to create my dataset. 
 
+#### Training and Validation Data
 In Part 1, I discussed two possible routes for this project, one that focused on features and one that focused on spectrograms (images). I have decided to take the spectrogram route and to create a CNN that takes a spectrogram image as input and outputs the genre classification. As such, the dataset from the original reference GitHub won't work. Instead, I have downloaded a Kaggle dataset that contains spectrograms of the GTZAN Dataset. The dataset is called GTZAN Dataset - Music Genre Classification, and the Kaggle page is linked [here](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification?resource=download). The Kaggle datasets are open source.
 
 The original GTZAN Dataset is a public dataset originally from "Musical genre classification of audio signals" by G. Tzanetakis and P. Cook. This paper is linked [here](https://ieeexplore.ieee.org/document/1021072). The GTZAN dataset is the most used public dataset for machine learning for music genre classification. This dataset contains 1000 audio files, each 30 seconds in length. These files are divided into 10 different genres, each with 100 corresponding audio files. The dataset I downloaded includes these audio files as spectrograms, which were created using the librosa library. So, in total, my complete dataset includes 100 spectrograms for each of the 10 genres I will be able to classify: blues, classical, country, disco, hiphop, jazz (only has 99 files), metal, pop, reggae, and rock. This gives me a total of 999 spectrograms. Here are a few spectrograms from my dataset:
@@ -83,6 +84,8 @@ The original GTZAN Dataset is a public dataset originally from "Musical genre cl
 
 
 I compiled the images, which were originally split into 10 seperate folders for each genre, into one csv file containing the image name and the correct genre classification to use as input in my neural network for both training and validation. Then, I used scikit test_train_split to split my csv entries randomly into 70% training data and 30% validation data. The small Python code I used to do this is located in the [split_data.py](split_data.py) file in this GitHub.
+
+#### Unknown Testing Data
 
 For the "unknown" testing dataset, I ran 20 of my own song choices, 2 per genre as classified by Apple Music, through a [Spectrogram Creator](https://convert.ing-now.com/audio-spectrogram-creator/). Here is an example entry of the testing dataset:
 
@@ -115,11 +118,11 @@ To test my first solution model on a single test sample, run [test_model.py](tes
 
 ### Final Solution Report
 #### Gathering Test Dataset
-To create my "unknown" test dataset, I gathered the .mp4 files for 20 songs from Apple's iTunes. I found two songs per genre, as classified by Apple Music. I then used a [Spectrogram Creator](https://convert.ing-now.com/audio-spectrogram-creator/) to create spectrograms of the songs, using an output size of 1024x1024, a color level of 1, an intensity level of 1, and a density level of 1 to best match the style of the training data spectrograms. I used Preview to reformat the images to a size of 432x288, which is the input size for my neural network. An example of these spectrograms is seen in Part 1 of this readme. These test spectrograms were not necessarily made with the same program as the training and validation spectrograms, which means the test set represents another source of spectrograms. 
+To create my "unknown" test dataset, I gathered the .mp4 files for 20 songs from Apple's iTunes. I found two songs per genre, as classified by Apple Music. I then used a [Spectrogram Creator](https://convert.ing-now.com/audio-spectrogram-creator/) to create spectrograms of the songs, using an output size of 1024x1024, a color level of 1, an intensity level of 1, and a density level of 1 to best match the style of the training data spectrograms. I used Preview to reformat the images to a size of 432x288, which is the input size for my neural network. An example of these spectrograms is seen in [Part 1](README.md#unknown-testing-data) of this readme. These test spectrograms were not necessarily made with the same program as the training and validation spectrograms, which means the test set represents another source of spectrograms. 
 
 
 ### Test Set Accuracy
-The final solution is a smaller network than the first solution. Everything remained the same as explained in Part 3 except for the channel input and output numbers for each convolutional layer and the optimizer function. The first layer now has 16 output channels, the second layer has 32 output channels, and the third layer has 16 output channels. The optimizer function is an Adagrad optimizer with a learning rate of 0.01. The final solution has an accuracy of 62.67% when tested on the validation set and an accuracy of 30.00% when tested on my "unknown" test set.
+The final solution is a smaller network than the first solution. Everything remained the same as explained in [Part 3](README.md#neural-network-architecture) except for the channel input and output numbers for each convolutional layer and the optimizer function. The first layer now has 16 output channels, the second layer has 32 output channels, and the third layer has 16 output channels. The optimizer function is an Adagrad optimizer with a learning rate of 0.01. The final solution has an accuracy of 62.67% when tested on the validation set and an accuracy of 30.00% when tested on my "unknown" test set.
 
 ### Commentary on Test Set
 The network was able to classify the Hip Hop, Blues, and Classical genres perfectly but thought that the rest of the genres fell into these three categories as well. 
