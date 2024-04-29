@@ -125,8 +125,15 @@ To create my "unknown" test dataset, I gathered the .mp4 files for 20 songs from
 The final solution is a smaller network than the first solution. Everything remained the same as explained in [Part 3](README.md#neural-network-architecture) except for the channel input and output numbers for each convolutional layer and the optimizer function. The first layer now has 16 output channels, the second layer has 32 output channels, and the third layer has 16 output channels. The optimizer function is an Adagrad optimizer with a learning rate of 0.01. The final solution has an accuracy of 62.67% when tested on the validation set and an accuracy of 30.00% when tested on my "unknown" test set. 
 
 ### Commentary on Test Set
-The network was able to classify the Hip Hop, Blues, and Classical genres perfectly but thought that the rest of the genres fell into these three categories as well. I think one of the main reasons that the network performed worse on the testing set is because the spectrograms in the testing set were made from complete songs instead of 30 second snippets. Here is a side by side comparison of a Blues song from the testing set and a Blues song from the validation set.
+The network was able to classify the Hip Hop, Blues, and Classical genres perfectly but thought that the rest of the genres fell into these three categories as well. I think one of the main reasons that the network performed worse on the testing set is because the spectrograms in the testing set were made from complete songs instead of 30 second snippets. Here is a side by side comparison of a Hip Hop song from the testing set (Thrift Shop by Macklemore) and a Hip Hop song from the validation set. The network was able to correctly classify both of these images.
 
-![Testing](/test_samples/at_last_(blues).png) ![Training](/data_samples/blues00009.png)
+![Testing](/test_samples/thrift_shop_(hiphop).png) ![Training](/data_samples/hiphop00018.png)
+
+
+Here is a side by side comparison of a Country song from the testing set (Cruise by Florida Georgia Line) and a Country song from the validation set. The network was able to classify the training sample as Country, but it classified the testing sample as Hip Hop. 
+
+![Testing](/test_samples/cruise_(country).png) ![Training](/data_samples/country00007.png)
+
+
 
 
