@@ -1,0 +1,1 @@
+these samples were added with a specification of density = 2 so test a theory that these spectrograms would more closely resemble the spectrograms from the training and validation sets. there was not enough evidence to support this theory after a few tests, so it was abandoned.
