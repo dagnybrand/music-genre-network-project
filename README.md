@@ -125,15 +125,18 @@ To create my "unknown" test dataset, I gathered the .mp4 files for 20 songs from
 The final solution is a smaller network than the first solution. Everything remained the same as explained in [Part 3](README.md#neural-network-architecture) except for the channel input and output numbers for each convolutional layer and the optimizer function. The first layer now has 16 output channels, the second layer has 32 output channels, and the third layer has 16 output channels. The optimizer function is an Adagrad optimizer with a learning rate of 0.01. The final solution has an accuracy of 62.67% when tested on the validation set and an accuracy of 30.00% when tested on my "unknown" test set. 
 
 ### Commentary on Test Set
-The network was able to classify the Hip Hop, Blues, and Classical genres perfectly but thought that the rest of the genres fell into these three categories as well. I think one of the main reasons that the network performed worse on the testing set is because the spectrograms in the testing set were made from complete songs instead of 30 second snippets. Here is a side by side comparison of a Hip Hop song from the testing set (Thrift Shop by Macklemore) and a Hip Hop song from the validation set. The network was able to correctly classify both of these images.
+The network was able to classify the Hip Hop, Blues, and Classical genres perfectly but thought that the rest of the genres fell into these three categories as well. I think one of the main reasons that the network performed worse on the testing set is because the spectrograms in the testing set were made from complete songs instead of 30 second snippets. Here is a side by side comparison of a Hip Hop song from the testing set (Thrift Shop by Macklemore) and a Hip Hop song from the validation set, respectively. The network was able to correctly classify both of these images.
 
 ![Testing](/test_samples/thrift_shop_(hiphop).png) ![Training](/data_samples/hiphop00018.png)
 
+The similarities between the two hip hop spectrograms are clear. The tall spikes are slightly spread out, there is high yellow density at the bottom, the spikes are all pretty tall, and there are black spaces within both spectrograms.
 
-Here is a side by side comparison of a Country song from the testing set (Cruise by Florida Georgia Line) and a Country song from the validation set. The network was able to classify the training sample as Country, but it classified the testing sample as Hip Hop. 
+
+Here is a side by side comparison of a Country song from the testing set (Cruise by Florida Georgia Line) and a Country song from the validation set, respectively. The network was able to classify the training sample as Country, but it classified the testing sample as Hip Hop. 
 
 ![Testing](/test_samples/cruise_(country).png) ![Training](/data_samples/country00007.png)
 
+The training sample for Country is clearly different from the training sample for Hip Hop. Despite both samples having tall spikes and a high density of yellow toward the bottom of the spectrogram, the spaces and lines in the Country sample are much more jagged than those in the Hip Hop sample. However, because the testing samples are slightly less zoomed-in, the differences between the Country testing sample and the Hip Hop testing sample are not as prominent. While the human eye can see the bigger yellow intense sections at the bottom of the Country sample, this difference is not as obvious as the jagged lines in the training sample. This shows that because the testing samples are of larger time frames, resulting in them being more zoomed-out than the training samples, the differences between genres are not as prominent. Because the neural network was trained soley on 30 second audio clips, the network is unable to successfully distiguish between some genres when the song clips are longer, although it is able to successfully classify Blues, Hip Hop, and Classical songs. To fix this issue, I would train the network on longer audio clips to allow it to learn how spectrograms of complete songs look and differ from 30 second clips.   
 
 
 
