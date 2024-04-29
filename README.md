@@ -127,6 +127,6 @@ The final solution is a smaller network than the first solution. Everything rema
 ### Commentary on Test Set
 The network was able to classify the Hip Hop, Blues, and Classical genres perfectly but thought that the rest of the genres fell into these three categories as well. I think one of the main reasons that the network performed worse on the testing set is because the spectrograms in the testing set were made from complete songs instead of 30 second snippets. Here is a side by side comparison of a Blues song from the testing set and a Blues song from the validation set.
 
-[Testing](/training_samples/at_last_(blues).png) [Training](/data_samples/blues00009.png)
+![Testing](/test_samples/at_last_(blues).png) ![Training](/data_samples/blues00009.png)
 
 
